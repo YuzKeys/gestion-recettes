@@ -1,18 +1,28 @@
 {
   "name": "gestion-recettes",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Youssef Larbi",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.11.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuzKeys/gestion-recettes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YuzKeys/gestion-recettes/issues"
+  },
+  "homepage": "https://github.com/YuzKeys/gestion-recettes#readme",
+  "description": ""
 }
