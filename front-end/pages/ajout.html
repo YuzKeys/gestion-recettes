@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Recette</title>
+    <link rel="stylesheet" href="/front-end/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <!-- Cette page affiche les recettes existantes -->
+                <li><a href="/front-end/pages/index.html">Recettes</a></li>
+                <!-- cette page permet d'ajouter des recettes -->
+                <li><a href="/front-end/pages/ajout.html">Ajouter</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <form id="recipeForm" action="POST">
+        <label for="name">Nom de la recette :</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description :</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="ingredients">Ingrédients (séparés par une virgule) :</label>
+        <input type="text" id="ingredients" name="ingredients" required>
+
+        <label for="steps">Étapes (séparées par un point-virgule) :</label>
+        <input type="text" id="steps" name="steps" required>
+
+        <label for="image">Image :</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <button type="submit">Ajouter la Recette</button>
+    </form>
+
+    <footer>
+        <p>&copy; 2025 Gestion-Recettes</p>
+    </footer>
+
+</body>
+
+</html>
