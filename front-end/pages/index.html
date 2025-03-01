@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion-Recettes</title>
     <link rel="stylesheet" href="/front-end/styles/style.css">
+    <!-- <script src="/front-end/scripts/script.js" defer></script> -->
 </head>
 
 <body>
@@ -21,93 +22,66 @@
     </header>
 
     <section class="container-recettes">
-
         <!-- modele d'une recette -->
-        <div class="recette">
+        <!-- <div class="recette">
             <h3>Titre de la recette</h3>
-            <!-- image de la recette 1 -->
             <img src="/front-end/images/recette.jpg" alt="recette1">
             <p>description de la recette: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime omnis alias
                 laboriosam animi corporis quaerat est, enim debitis neque ipsum quisquam recusandae velit laborum
                 tempora voluptate numquam perspiciatis molestiae veniam!</p>
             <a href="recette1.html">Voir la recette</a>
-        </div>
+        </div> -->
         <!-- modele d'une recette -->
-
-        <div class="recette">
-            <h3>Titre de la recette</h3>
-            <!-- image de la recette 1 -->
-            <img src="/front-end/images/recette.jpg" alt="recette1">
-            <p>description de la recette: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime omnis alias
-                laboriosam animi corporis quaerat est, enim debitis neque ipsum quisquam recusandae velit laborum
-                tempora voluptate numquam perspiciatis molestiae veniam!</p>
-            <a href="recette1.html">Voir la recette</a>
-        </div>
-
-        <div class="recette">
-            <h3>Titre de la recette</h3>
-            <!-- image de la recette 1 -->
-            <img src="/front-end/images/recette.jpg" alt="recette1">
-            <p>description de la recette: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime omnis alias
-                laboriosam animi corporis quaerat est, enim debitis neque ipsum quisquam recusandae velit laborum
-                tempora voluptate numquam perspiciatis molestiae veniam!</p>
-            <a href="recette1.html">Voir la recette</a>
-        </div>
-
-        <div class="recette">
-            <h3>Titre de la recette</h3>
-            <!-- image de la recette 1 -->
-            <img src="/front-end/images/recette.jpg" alt="recette1">
-            <p>description de la recette: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime omnis alias
-                laboriosam animi corporis quaerat est, enim debitis neque ipsum quisquam recusandae velit laborum
-                tempora voluptate numquam perspiciatis molestiae veniam!</p>
-            <a href="recette1.html">Voir la recette</a>
-        </div>
-
-        <div class="recette">
-            <h3>Titre de la recette</h3>
-            <!-- image de la recette 1 -->
-            <img src="/front-end/images/recette.jpg" alt="recette1">
-            <p>description de la recette: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime omnis alias
-                laboriosam animi corporis quaerat est, enim debitis neque ipsum quisquam recusandae velit laborum
-                tempora voluptate numquam perspiciatis molestiae veniam!</p>
-            <a href="recette1.html">Voir la recette</a>
-        </div>
-
-        <div class="recette">
-            <h3>Titre de la recette</h3>
-            <!-- image de la recette 1 -->
-            <img src="/front-end/images/recette.jpg" alt="recette1">
-            <p>description de la recette: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime omnis alias
-                laboriosam animi corporis quaerat est, enim debitis neque ipsum quisquam recusandae velit laborum
-                tempora voluptate numquam perspiciatis molestiae veniam!</p>
-            <a href="recette1.html">Voir la recette</a>
-        </div>
-
-        <div class="recette">
-            <h3>Titre de la recette</h3>
-            <!-- image de la recette 1 -->
-            <img src="/front-end/images/recette.jpg" alt="recette1">
-            <p>description de la recette: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime omnis alias
-                laboriosam animi corporis quaerat est, enim debitis neque ipsum quisquam recusandae velit laborum
-                tempora voluptate numquam perspiciatis molestiae veniam!</p>
-            <a href="recette1.html">Voir la recette</a>
-        </div>
-
-        <div class="recette">
-            <h3>Titre de la recette</h3>
-            <!-- image de la recette 1 -->
-            <img src="/front-end/images/recette.jpg" alt="recette1">
-            <p>description de la recette: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime omnis alias
-                laboriosam animi corporis quaerat est, enim debitis neque ipsum quisquam recusandae velit laborum
-                tempora voluptate numquam perspiciatis molestiae veniam!</p>
-            <a href="recette1.html">Voir la recette</a>
-        </div>
-
+        <div id="containerTest"></div>
     </section>
     <footer>
         <p>&copy; 2025 Gestion-Recettes</p>
     </footer>
+
+    <script>
+
+        const containerTest = document.getElementById('containerTest');
+
+        // Fonction pour récupérer les recettes
+        async function fetchDataRecettes() {
+
+            const response = await fetch('http://localhost:4022/api/recettes', {
+                mode: 'cors'
+            });
+            const data = await response.json();
+            return data;
+        }
+
+        // fonction pour afficher les recettes
+        function displayRecettes(data) {
+            const containerRecettes = document.querySelector('.container-recettes');
+            data.recettes.forEach(element => {
+                const recette = document.createElement('div');
+                recette.classList.add('recette');
+                const titre = document.createElement('h3');
+                titre.textContent = element.name;
+                const description = document.createElement('p');
+                description.textContent = element.description;
+                const image = document.createElement('img');
+                image.src = element.image;
+                console.log(element.image);
+                image.alt = element.name;
+                const lien = document.createElement('a');
+                lien.href = `recette${element.id}.html`;
+                lien.textContent = 'Voir la recette';
+                recette.appendChild(titre);
+                recette.appendChild(description);
+                recette.appendChild(image);
+                recette.appendChild(lien);
+                containerRecettes.appendChild(recette);
+            });
+        }
+
+        fetchDataRecettes()
+            .then(data => displayRecettes(data));
+    </script>
+
+
 </body>
 
 </html>

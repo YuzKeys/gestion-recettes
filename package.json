@@ -2,9 +2,11 @@
   "name": "gestion-recettes",
   "version": "0.1.0",
   "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node --env-file=.env app.js",
+    "dev": "node --env-file=.env --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Youssef Larbi",
@@ -13,9 +15,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongoose": "^8.11.0"
+    "mongoose": "^8.11.0",
+    "morgan": "^1.10.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/YuzKeys/gestion-recettes.git"

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recettes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .recipe-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .recipe {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Recettes</h1>
+    <button onclick="ajouterRecette()">Ajouter une recette</button>
+    <div class="recipe-container" id="recipeContainer"></div>
+
+    <script>
+        // Fonction pour stocker une recette dans localStorage
+        function ajouterRecette() {
+            let recettes = JSON.parse(localStorage.getItem('recettes')) || [];
+
+            // Ajouter une nouvelle recette (exemple ici, mais tu peux le modifier selon un formulaire)
+            let nouvelleRecette = {
+                id: Date.now(),
+                nom: "Tarte aux pommes",
+                description: "Une délicieuse tarte aux pommes caramélisées.",
+                ingredients: ["Pommes", "Sucre", "Farine", "Beurre"]
+            };
+
+            recettes.push(nouvelleRecette);
+            localStorage.setItem('recettes', JSON.stringify(recettes));
+
+            afficherRecettes(); // Mettre à jour l'affichage
+        }
+
+        // Fonction pour afficher les recettes
+        function afficherRecettes() {
+            let recettes = JSON.parse(localStorage.getItem('recettes')) || [];
+            let container = document.getElementById("recipeContainer");
+            container.innerHTML = ""; // Vider le conteneur avant de réafficher
+
+            recettes.forEach(recette => {
+                let div = document.createElement("div");
+                div.className = "recipe";
+                div.innerHTML = `
+                    <h3>${recette.nom}</h3>
+                    <p>${recette.description}</p>
+                    <strong>Ingrédients :</strong>
+                    <ul>
+                        ${recette.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                    </ul>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Charger les recettes au démarrage de la page
+        window.onload = afficherRecettes;
+    </script>
+
+</body>
+
+</html>
